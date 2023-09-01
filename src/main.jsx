@@ -3,14 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { SignInContextProvider } from "./context/SignInContext";
-import { IsLoadingContextProvider } from "./context/IsLoadingContext.jsx";
+import { HandleProcessesContextProvider } from "./context/HandleProcessesContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.Fragment>
     <SignInContextProvider>
-      <IsLoadingContextProvider>
+      <HandleProcessesContextProvider>
         <App />
-      </IsLoadingContextProvider>
+      </HandleProcessesContextProvider>
     </SignInContextProvider>
   </React.Fragment>
 );
