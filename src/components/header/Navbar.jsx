@@ -4,6 +4,7 @@ import { auth } from "../../firebase/config";
 import { useContext } from "react";
 import { SignInContext } from "../../context/SignInContext";
 import { HandleProcessesContext } from "../../context/HandleProcessesContext";
+import appLogo from "../../assets/app-logo.png";
 
 function Navbar() {
   //write code here
@@ -15,14 +16,15 @@ function Navbar() {
       setIsLoading(false);
     });
   }
-  const name = auth?.currentUser.displayName;
+  const name = auth?.currentUser?.displayName;
 
   const { isSignedIn } = useContext(SignInContext);
   return (
     <nav className="grid grid-cols-12 gap-3">
-      <h1 className=" pt-2 text-center font-bold col-span-6">
-        Todo List Project
-      </h1>
+      <div className="col-span-6 flex justify-center items-center">
+        <img src={appLogo} alt="app logo" width={40} />
+        <h1 className="pt-2 text-center font-bold ">Todo List Project</h1>
+      </div>
       <NavButton href={"/"}>Home</NavButton>
       {!isSignedIn && <NavButton href={"login"}>Login</NavButton>}
       {isSignedIn && (
