@@ -23,12 +23,12 @@ const listItems = [
     icon: <FamilyRestroomIcon />,
   },
   {
-    text: "important but not urgent",
+    text: "important & not urgent",
     link: "/tasks/important-not-urgent",
     icon: <LocalLibraryIcon />,
   },
   {
-    text: "urgent but not important",
+    text: "not important & urgent",
     link: "/tasks/urgent-not-important",
     icon: <WifiCalling3Icon />,
   },

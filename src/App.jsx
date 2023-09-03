@@ -10,6 +10,10 @@ import LoadingSpinner from "./components/loader/LoadingSpinner";
 import { HandleProcessesContext } from "./context/HandleProcessesContext";
 import "@fontsource/roboto/300.css";
 import { Box, Container } from "@mui/material";
+import ImAndUrgent from "./pages/tasks/im-and-urgent/ImAndUrgent";
+import ImNotUrgent from "./pages/tasks/im-not-urgent/ImNotUrgent";
+import NotImUrgent from "./pages/tasks/not-im-urgent/NotImUrgent";
+import NotImNotUrgent from "./pages/tasks/not-im-not-urgent/NotImNotUrgent";
 
 function App() {
   const { setIsSignedIn } = useContext(SignInContext);
@@ -40,19 +44,19 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route
               path="/tasks/important-and-urgent"
-              element={<h1>this is important-and-urgent</h1>}
+              element={<ImAndUrgent />}
             />
             <Route
               path="/tasks/important-not-urgent"
-              element={<h1>this is important-not-urgent</h1>}
+              element={<ImNotUrgent />}
             />
             <Route
               path="/tasks/urgent-not-important"
-              element={<h1>this is urgent-not-important</h1>}
+              element={<NotImUrgent />}
             />
             <Route
               path="/tasks/not-important-and-not-urgent"
-              element={<h1>this is not-important-and-not-urgent</h1>}
+              element={<NotImNotUrgent />}
             />
           </Routes>
         </Container>
