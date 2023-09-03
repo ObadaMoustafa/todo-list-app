@@ -1,8 +1,9 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase/config";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { SignInContext } from "../../context/SignInContext";
 import { Navigate } from "react-router-dom";
+import "./login.css";
 
 function Login() {
   //write code here
@@ -22,8 +23,12 @@ function Login() {
       {isSignedIn ? (
         <Navigate to="/" />
       ) : (
-        <button type="submit" onClick={signInWithGoogle}>
-          google login
+        <button
+          type="button"
+          onClick={signInWithGoogle}
+          className="login-with-google-btn"
+        >
+          Sign in with Google
         </button>
       )}
     </>

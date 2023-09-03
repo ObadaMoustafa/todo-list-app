@@ -1,41 +1,22 @@
-import { signOut } from "firebase/auth";
-import NavButton from "../buttons/NavButton";
 import { auth } from "../../firebase/config";
 import { useContext } from "react";
 import { SignInContext } from "../../context/SignInContext";
-import { HandleProcessesContext } from "../../context/HandleProcessesContext";
-import appLogo from "../../assets/app-logo.png";
+import { Box, Typography } from "@mui/material";
+import MenuBar from "./MenuBar";
 
 function Navbar() {
-  //write code here
-  const { setIsLoading } = useContext(HandleProcessesContext);
-  function signUserOut() {
-    setIsLoading(true);
-    signOut(auth).catch((err) => {
-      console.log(err.message);
-      setIsLoading(false);
-    });
-  }
-  const name = auth?.currentUser?.displayName;
-
+  const name = auth?.currentUser?.displayName.split(" ")[0];
   const { isSignedIn } = useContext(SignInContext);
+
   return (
-    <nav className="grid grid-cols-12 gap-3">
-      <div className="col-span-6 flex justify-center items-center">
-        <img src={appLogo} alt="app logo" width={40} />
-        <h1 className="pt-2 text-center font-bold ">Todo List Project</h1>
-      </div>
-      <NavButton href={"/"}>Home</NavButton>
-      {!isSignedIn && <NavButton href={"login"}>Login</NavButton>}
+    <Box component="nav">
+      <MenuBar />
       {isSignedIn && (
-        <>
-          <NavButton onClick={signUserOut}>Sign Out</NavButton>
-          <h1 className="col-span-12 text-center font-semibold">
-            Welcome {name}
-          </h1>
-        </>
+        <Typography variant="h6" color="darkblue" textAlign="center" pt={2}>
+          Welcome {name}
+        </Typography>
       )}
-    </nav>
+    </Box>
   );
 }
 

@@ -1,4 +1,3 @@
-import "./nav-button.css";
 import { useNavigate } from "react-router-dom";
 
 function NavButton({ children, href, ...rest }) {
@@ -8,7 +7,7 @@ function NavButton({ children, href, ...rest }) {
     nav(href);
   }
   return (
-    <button className="nav-btn" onClick={linkToHref} {...rest}>
+    <button onClick={linkToHref} {...rest}>
       {children}
     </button>
   );
