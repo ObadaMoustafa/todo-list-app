@@ -13,3 +13,12 @@ a {
 a:visited {
   color: inherit;
 }
+
+.link {
+  color: rgb(46, 150, 185);
+  text-decoration: underline;
+}
+
+.link:visited {
+  color: rgb(46, 150, 185);
+}

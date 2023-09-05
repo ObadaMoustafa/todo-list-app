@@ -1,4 +1,11 @@
-import { Avatar, Button, IconButton, Menu, MenuItem } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { auth } from "../../firebase/config";
 import { useContext, useState } from "react";
 import { SignInContext } from "../../context/SignInContext";
@@ -8,6 +15,8 @@ import { Link } from "react-router-dom";
 
 function UserAvatar() {
   //write code here
+  const name = auth?.currentUser?.displayName.split(" ")[0];
+
   const avatarURL = auth?.currentUser?.photoURL;
   const [anchorEl, setAnchorEl] = useState(null);
   const { isSignedIn } = useContext(SignInContext);
@@ -33,6 +42,10 @@ function UserAvatar() {
     <>
       {isSignedIn ? (
         <>
+          <Typography variant="h6" color="white" textAlign="center">
+            Welcome {name}
+          </Typography>
+
           <IconButton
             size="large"
             aria-label="account of current user"

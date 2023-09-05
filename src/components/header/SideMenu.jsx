@@ -14,7 +14,7 @@ import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const listItems = [
   {
@@ -42,8 +42,14 @@ const listItems = [
 function SideMenu() {
   //write code here
   const [openSideMenu, setOpenSideMenu] = useState(false);
+  const nav = useNavigate();
   function openOrHideSideMenu() {
     setOpenSideMenu(!openSideMenu);
+  }
+
+  function goToTaskPage(href) {
+    nav(href);
+    openOrHideSideMenu();
   }
 
   const { isSignedIn } = useContext(SignInContext);
@@ -63,12 +69,10 @@ function SideMenu() {
             <List>
               {listItems.map((item, i) => (
                 <ListItem key={i}>
-                  <Link to={item.link} style={{ width: "100%" }}>
-                    <ListItemButton>
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.text} />
-                    </ListItemButton>
-                  </Link>
+                  <ListItemButton onClick={() => goToTaskPage(item.link)}>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
                 </ListItem>
               ))}
             </List>

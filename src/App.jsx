@@ -1,19 +1,25 @@
 import "./App.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import Navbar from "./components/header/Navbar";
+import { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
-import { useContext, useEffect } from "react";
 import { SignInContext } from "./context/SignInContext";
 import LoadingSpinner from "./components/loader/LoadingSpinner";
 import { HandleProcessesContext } from "./context/HandleProcessesContext";
-import "@fontsource/roboto/300.css";
-import { Box, Container } from "@mui/material";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import ImAndUrgent from "./pages/tasks/im-and-urgent/ImAndUrgent";
 import ImNotUrgent from "./pages/tasks/im-not-urgent/ImNotUrgent";
 import NotImUrgent from "./pages/tasks/not-im-urgent/NotImUrgent";
 import NotImNotUrgent from "./pages/tasks/not-im-not-urgent/NotImNotUrgent";
+import HomePage from "./pages/home/HomePage";
+import Test from "./pages/tasks/components/Test";
 
 function App() {
   const { setIsSignedIn } = useContext(SignInContext);
@@ -27,20 +33,25 @@ function App() {
     });
   }, []);
   return (
-    <Box height="100vh" display="flex" flexWrap="wrap">
+    <Box minHeight="100vh">
       <Router>
         {isLoading && <LoadingSpinner />}
         <Navbar />
         <Container
           sx={{
-            height: "100%",
+            pt: "80px",
+            pb: "30px",
+            minHeight: "100vh",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "start",
+            flexWrap: "wrap",
+            rowGap: 5,
           }}
         >
           <Routes>
-            <Route path="/" element={<h1>this is home page route</h1>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/tasks/important-and-urgent"
@@ -58,6 +69,7 @@ function App() {
               path="/tasks/not-important-and-not-urgent"
               element={<NotImNotUrgent />}
             />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </Container>
       </Router>

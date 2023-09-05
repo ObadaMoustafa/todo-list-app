@@ -20,6 +20,7 @@ export default function MenuBar() {
               Todo App
             </Typography>
           </Link>
+
           <UserAvatar />
         </Toolbar>
       </AppBar>
