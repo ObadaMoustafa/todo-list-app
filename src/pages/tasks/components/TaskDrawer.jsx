@@ -7,23 +7,35 @@ import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import { TextField } from "@mui/material";
-import { forwardRef, useState } from "react";
+import { Paper, TextField } from "@mui/material";
+import { forwardRef, useRef, useState } from "react";
+import { changeTaskDetails } from "../../../utils/dbFunction";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function TaskDrawer({ open, setOpen, item }) {
+export default function TaskDrawer({ open, setOpen, item, index, priority }) {
+  const [title, setTitle] = useState(item.title);
+  const titleRef = useRef();
+  const [notes, setNotes] = useState(item.notes || "");
+  const notesRef = useRef();
+
+  const changeTitle = () => setTitle(titleRef.current.value);
+  const changeNotes = () => setNotes(notesRef.current.value);
+
   const handleClose = () => {
+    setOpen(false);
+    setTitle(item.title);
+  };
+
+  const saveDetails = () => {
+    changeTaskDetails(index, priority, { title, notes });
     setOpen(false);
   };
 
-  const [content, setContent] = useState(item.title);
-  const changeTitle = (e) => setContent(e.target.value);
   return (
     <div>
       <Dialog
@@ -42,31 +54,30 @@ export default function TaskDrawer({ open, setOpen, item }) {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              <TextField
-                value={content}
-                onChange={changeTitle}
-                variant="standard"
-                fullWidth
-              />
-            </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
+            <TextField
+              inputRef={titleRef}
+              value={title}
+              onChange={changeTitle}
+              variant="standard"
+              sx={{ mx: { xs: 1, md: 5 } }}
+              fullWidth
+              autoFocus
+            />
+            <Button color="inherit" onClick={saveDetails}>
               save
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
+        <TextField
+          inputRef={notesRef}
+          multiline
+          label="Notes"
+          placeholder="Write your notes here"
+          fullWidth
+          sx={{ mt: 5, width: "95%", mx: "auto" }}
+          value={notes}
+          onChange={changeNotes}
+        />
       </Dialog>
     </div>
   );

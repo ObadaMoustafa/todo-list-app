@@ -1,4 +1,4 @@
-import { child, get, push, ref, set } from "firebase/database";
+import { child, get, push, ref, set, update } from "firebase/database";
 import { auth, db } from "../firebase/config";
 
 export const setTasksInDB = (tasks, priority) => {
@@ -20,4 +20,11 @@ export const getNewId = (priority) => {
   const userId = auth.currentUser.uid;
   const path = `${userId}/${priority}`;
   return push(child(ref(db), path)).key;
+};
+
+export const changeTaskDetails = (index, priority, details) => {
+  const userId = auth.currentUser.uid;
+  const path = `${userId}/${priority}/${index}`;
+  const dbRef = ref(db, path);
+  update(dbRef, details);
 };

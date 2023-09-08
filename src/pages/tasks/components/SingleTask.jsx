@@ -108,7 +108,13 @@ function SingleTask({ item, index, moveCard, priority }) {
         </IconButton>
       </Paper>
 
-      <TaskDrawer open={open} setOpen={setOpen} item={item} />
+      <TaskDrawer
+        open={open}
+        setOpen={setOpen}
+        item={item}
+        index={index}
+        priority={priority}
+      />
     </>
   );
 }
