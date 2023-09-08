@@ -2,12 +2,12 @@ import { Checkbox, IconButton, Paper, Typography } from "@mui/material";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useRef, useState } from "react";
 import TaskDrawer from "./TaskDrawer";
 import { useDrag, useDrop } from "react-dnd";
+import DeleteTaskButton from "./DeleteTaskButton";
 
-function SingleTask({ item, index, moveCard }) {
+function SingleTask({ item, index, moveCard, priority }) {
   //write code here
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -100,11 +100,9 @@ function SingleTask({ item, index, moveCard }) {
           checked={item.checked}
         />
         <Typography variant="h5" flexGrow={1} onClick={handleClickOpen}>
-          {item.content}
+          {item.title}
         </Typography>
-        <IconButton color="error">
-          <DeleteIcon />
-        </IconButton>
+        <DeleteTaskButton item={item} priority={priority} />
         <IconButton sx={{ cursor: "grab" }} color="primary">
           <DragHandleIcon />
         </IconButton>

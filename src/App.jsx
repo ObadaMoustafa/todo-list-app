@@ -20,6 +20,8 @@ import NotImUrgent from "./pages/tasks/not-im-urgent/NotImUrgent";
 import NotImNotUrgent from "./pages/tasks/not-im-not-urgent/NotImNotUrgent";
 import HomePage from "./pages/home/HomePage";
 import Test from "./pages/tasks/components/Test";
+import TasksContextProvider from "./context/TasksContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   const { setIsSignedIn } = useContext(SignInContext);
@@ -55,19 +57,35 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route
               path="/tasks/important-and-urgent"
-              element={<ImAndUrgent />}
+              element={
+                <ProtectedRoute>
+                  <ImAndUrgent />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/tasks/important-not-urgent"
-              element={<ImNotUrgent />}
+              element={
+                <ProtectedRoute>
+                  <ImNotUrgent />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/tasks/urgent-not-important"
-              element={<NotImUrgent />}
+              element={
+                <ProtectedRoute>
+                  <NotImUrgent />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/tasks/not-important-and-not-urgent"
-              element={<NotImNotUrgent />}
+              element={
+                <ProtectedRoute>
+                  <NotImNotUrgent />
+                </ProtectedRoute>
+              }
             />
             <Route path="/test" element={<Test />} />
           </Routes>

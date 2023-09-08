@@ -22,7 +22,7 @@ export default function TaskDrawer({ open, setOpen, item }) {
     setOpen(false);
   };
 
-  const [content, setContent] = useState(item.content);
+  const [content, setContent] = useState(item.title);
   const changeTitle = (e) => setContent(e.target.value);
   return (
     <div>
