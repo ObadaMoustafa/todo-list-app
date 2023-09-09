@@ -15,4 +15,4 @@ This template provides a minimal setup to get React working in Vite with HMR and
 ____________
 
 ## Live demo
-You can try the app [here](https://github.com/ObadaMoustafa/todo-list-app)
+You can try the app [here](https://obada-todo-list-app.netlify.app/)
