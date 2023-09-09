@@ -19,8 +19,6 @@ import ImNotUrgent from "./pages/tasks/im-not-urgent/ImNotUrgent";
 import NotImUrgent from "./pages/tasks/not-im-urgent/NotImUrgent";
 import NotImNotUrgent from "./pages/tasks/not-im-not-urgent/NotImNotUrgent";
 import HomePage from "./pages/home/HomePage";
-import Test from "./pages/tasks/components/Test";
-import TasksContextProvider from "./context/TasksContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
@@ -87,7 +85,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/test" element={<Test />} />
           </Routes>
         </Container>
       </Router>

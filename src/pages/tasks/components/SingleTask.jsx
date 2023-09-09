@@ -6,12 +6,20 @@ import { useRef, useState } from "react";
 import TaskDrawer from "./TaskDrawer";
 import { useDrag, useDrop } from "react-dnd";
 import DeleteTaskButton from "./DeleteTaskButton";
+import { changeTaskDetails } from "../../../utils/dbFunction";
 
 function SingleTask({ item, index, moveCard, priority }) {
   //write code here
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
+  };
+
+  console.log(item.title, item.checked);
+
+  const checkItem = () => {
+    const checked = item.checked ? !item.checked : true;
+    changeTaskDetails(index, priority, { checked });
   };
 
   //! ******** functions for draggable tasks *************
@@ -97,9 +105,15 @@ function SingleTask({ item, index, moveCard, priority }) {
           icon={<RadioButtonUncheckedIcon />}
           checkedIcon={<CheckCircleIcon />}
           color="success"
-          checked={item.checked}
+          checked={item.checked || false}
+          onClick={checkItem}
         />
-        <Typography variant="h5" flexGrow={1} onClick={handleClickOpen}>
+        <Typography
+          variant="h5"
+          flexGrow={1}
+          sx={{ textDecoration: item.checked ? "line-through" : "none" }}
+          onClick={handleClickOpen}
+        >
           {item.title}
         </Typography>
         <DeleteTaskButton item={item} priority={priority} />

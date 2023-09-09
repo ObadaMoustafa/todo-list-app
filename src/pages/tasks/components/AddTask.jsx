@@ -37,11 +37,12 @@ function AddTask({ priority }) {
     >
       <Box component="form" sx={{ display: "flex", width: "100%" }}>
         <InputBase
-          sx={{ flexGrow: 1 }}
+          sx={{ flexGrow: 1, fontSize: 25 }}
           placeholder="Write the task main title here"
           inputRef={newTaskRef}
           value={newTask}
           onChange={inputTask}
+          autoFocus
         />
         <IconButton color="primary" onClick={addTask} type="submit">
           <SendIcon />
