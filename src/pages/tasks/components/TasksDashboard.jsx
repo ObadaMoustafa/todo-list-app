@@ -9,9 +9,9 @@ import { TasksContext } from "../../../context/TasksContext";
 import { setTasksInDB } from "../../../utils/dbFunction";
 
 function TasksDashboard({ priority }) {
-  const tasksContextValues = useContext(TasksContext);
-  const items = tasksContextValues[`${priority}`];
-  const setItems = tasksContextValues[`set${priority}`];
+  const { allTasks, allSetTasks } = useContext(TasksContext);
+  const items = allTasks[`${priority}`];
+  const setItems = allSetTasks[`set${priority}`];
 
   //! _________ don't remove _____________________
   const moveCard = useCallback((dragIndex, hoverIndex) => {

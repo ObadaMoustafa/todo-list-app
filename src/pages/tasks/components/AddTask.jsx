@@ -11,7 +11,7 @@ function AddTask({ priority }) {
   const inputTask = () => setNewTask(newTaskRef.current.value);
 
   // get the proper state and setState from context according to the priority
-  const allTasks = useContext(TasksContext);
+  const { allTasks } = useContext(TasksContext);
   const tasks = allTasks[`${priority}`];
 
   const addTask = (e) => {

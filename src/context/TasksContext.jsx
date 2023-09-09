@@ -51,7 +51,8 @@ const TasksContextProvider = ({ children }) => {
   }, []);
   // ^ ________________________________________________________________________________________
 
-  useEffect(() => {
+  // for dev
+  /*   useEffect(() => {
     console.log("✅✅", iu);
   }, [iu]);
   useEffect(() => {
@@ -62,16 +63,10 @@ const TasksContextProvider = ({ children }) => {
   }, [niu]);
   useEffect(() => {
     console.log("❌❌", ninu);
-  }, [ninu]);
+  }, [ninu]); */
   const sharedValues = {
-    iu,
-    setiu,
-    inu,
-    setinu,
-    niu,
-    setniu,
-    ninu,
-    setninu,
+    allTasks: { iu, inu, niu, ninu },
+    allSetTasks: { setiu, setinu, setniu, setninu },
   };
   return (
     <TasksContext.Provider value={sharedValues}>

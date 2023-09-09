@@ -11,8 +11,9 @@ function NotImNotUrgent() {
         </Typography>
       </Divider>
       <Typography variant="h5" fontWeight={400} textAlign="center">
-        These are the most important tasks so you better focus on doing it to
-        get the most from your time.
+        These are the last tasks you need to thing about. Imagine this dashboard
+        like a trashy tasks 😅. it's better to eliminate these tasks from your
+        app and brain as well. it will waste your time and consume your energy.
       </Typography>
       <TasksDashboard priority="ninu" />
     </>

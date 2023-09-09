@@ -47,7 +47,7 @@ function App() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "start",
+            alignItems: "center",
             flexWrap: "wrap",
             rowGap: 5,
           }}

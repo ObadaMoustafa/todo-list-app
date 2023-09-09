@@ -12,8 +12,8 @@ function ImNotUrgent() {
         </Typography>
       </Divider>
       <Typography variant="h5" fontWeight={400} textAlign="center">
-        These are the most important tasks so you better focus on doing it to
-        get the most from your time.
+        These tasks are important but not urgent so you can schedule it to do it
+        soon.
       </Typography>
       <TasksDashboard priority="inu" />
     </>

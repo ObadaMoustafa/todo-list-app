@@ -12,8 +12,9 @@ function NotImUrgent() {
         </Typography>
       </Divider>
       <Typography variant="h5" fontWeight={400} textAlign="center">
-        These are the most important tasks so you better focus on doing it to
-        get the most from your time.
+        These tasks are not important but it's urgent in the same time. So it
+        will be good to delegate is for someone else to do it for you. it
+        depends on your priorities and values in life.
       </Typography>
       <TasksDashboard priority="niu" />
     </>

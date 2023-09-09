@@ -1,15 +1,11 @@
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import { Paper, TextField } from "@mui/material";
+import { Input, TextField } from "@mui/material";
 import { forwardRef, useRef, useState } from "react";
 import { changeTaskDetails } from "../../../utils/dbFunction";
 
@@ -31,7 +27,9 @@ export default function TaskDrawer({ open, setOpen, item, index, priority }) {
     setTitle(item.title);
   };
 
-  const saveDetails = () => {
+  const saveDetails = (e) => {
+    e.preventDefault();
+    if (!title) return;
     changeTaskDetails(index, priority, { title, notes });
     setOpen(false);
   };
@@ -44,30 +42,32 @@ export default function TaskDrawer({ open, setOpen, item, index, priority }) {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: "relative" }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <TextField
-              inputRef={titleRef}
-              value={title}
-              onChange={changeTitle}
-              variant="standard"
-              sx={{ mx: { xs: 1, md: 5 } }}
-              fullWidth
-              autoFocus
-            />
-            <Button color="inherit" onClick={saveDetails}>
-              save
-            </Button>
-          </Toolbar>
-        </AppBar>
+        <form>
+          <AppBar sx={{ position: "relative" }}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={handleClose}
+                aria-label="close"
+              >
+                <CloseIcon />
+              </IconButton>
+              <Input
+                inputRef={titleRef}
+                value={title}
+                onChange={changeTitle}
+                sx={{ mx: { xs: 1, md: 5 }, fontSize: 30, color: "white" }}
+                fullWidth
+                autoFocus
+                color="warning"
+              />
+              <Button color="inherit" type="submit" onClick={saveDetails}>
+                save
+              </Button>
+            </Toolbar>
+          </AppBar>
+        </form>
         <TextField
           inputRef={notesRef}
           multiline
