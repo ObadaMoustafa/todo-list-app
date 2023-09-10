@@ -4,9 +4,12 @@ import AddTask from "./AddTask";
 import { useCallback, useContext } from "react";
 import update from "immutability-helper";
 import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+// import { HTML5Backend } from "react-dnd-html5-backend";
 import { TasksContext } from "../../../context/TasksContext";
 import { setTasksInDB } from "../../../utils/dbFunction";
+import { TouchBackend } from "react-dnd-touch-backend";
+import { isMobile } from "react-device-detect";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function TasksDashboard({ priority }) {
   const { allTasks, allSetTasks } = useContext(TasksContext);
@@ -43,7 +46,7 @@ function TasksDashboard({ priority }) {
     >
       <Stack flexGrow={1} spacing={2}>
         {items.length > 0 && (
-          <DndProvider backend={HTML5Backend}>
+          <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
             {items.map((item, i) => (
               <SingleTask
                 key={item.id}

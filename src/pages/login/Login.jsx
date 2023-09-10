@@ -5,13 +5,17 @@ import { SignInContext } from "../../context/SignInContext";
 import { Navigate } from "react-router-dom";
 import "./login.css";
 import { Typography } from "@mui/material";
+import { HandleProcessesContext } from "../../context/HandleProcessesContext";
 
 function Login() {
   //write code here
   const { isSignedIn } = useContext(SignInContext);
-
+  const { setIsLoading } = useContext(HandleProcessesContext);
   function signInWithGoogle() {
-    signInWithPopup(auth, provider).catch(console.log);
+    setIsLoading(true);
+    signInWithPopup(auth, provider)
+      .then(() => setIsLoading(false))
+      .catch(console.log);
   }
 
   return (

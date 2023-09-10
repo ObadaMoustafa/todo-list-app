@@ -15,8 +15,6 @@ function SingleTask({ item, index, moveCard, priority }) {
     setOpen(true);
   };
 
-  console.log(item.title, item.checked);
-
   const checkItem = () => {
     const checked = item.checked ? !item.checked : true;
     changeTaskDetails(index, priority, { checked });
